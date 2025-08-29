@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Boss
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Background
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - PlayerProjectiles
+  - EnemyProjectiles
+  - PowerUp
+  - Shield
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3193867133
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3623562245
+    locked: 0
+  - name: Enemy
+    uniqueID: 18922101
+    locked: 0
+  - name: BackgroundTop
+    uniqueID: 171426235
+    locked: 0
+  - name: PowerUp
+    uniqueID: 1848870909
+    locked: 0
+  - name: PlayerProjectiles
+    uniqueID: 2594288931
+    locked: 0
+  - name: VFX
+    uniqueID: 1549357853
+    locked: 0
+  - name: UI
+    uniqueID: 1540212277
+    locked: 0
+  m_RenderingLayers:
+  - Default
