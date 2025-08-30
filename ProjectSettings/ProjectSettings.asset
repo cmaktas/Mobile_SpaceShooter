@@ -164,7 +164,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.4
   androidMinAspectRatio: 1
   applicationIdentifier:
-    Android: com.StaticEmber.SpaceShooterMobile
+    Android: com.StaticEmber.SpaceShooter
     Standalone: com.DefaultCompany.2D-URP
     iPhone: com.StaticEmber.SpaceShooter
   buildNumber:
