@@ -8,7 +8,6 @@ public class Meteor : Enemy
     [SerializeField] private float rotateSpeed;
     [SerializeField] private PowerUpSpawner powerUpSpawner;
 
-
     private float speed;
 
     void Start()
@@ -31,9 +30,7 @@ public class Meteor : Enemy
     public override void DeathSequence()
     {
         if (powerUpSpawner is not null)
-        {
-            powerUpSpawner.SpawnPowerUp(transform.position);
-        }
+            powerUpSpawner.SpawnPowerUp(transform.position);     
         base.DeathSequence();
     }
 

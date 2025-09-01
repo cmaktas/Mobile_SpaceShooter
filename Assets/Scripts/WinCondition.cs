@@ -7,9 +7,8 @@ public class WinCondition : MonoBehaviour
     [SerializeField] private bool hasBoss;
 
     private float timer;
-    public bool canSpanwBoss = false;
+    public bool canSpawnBoss = false;
 
-    // Update is called once per frame
     void Update()
     {
         if (EndGameManager.endGameManager.gameOver == true) return;
@@ -23,7 +22,7 @@ public class WinCondition : MonoBehaviour
             }
             else
             {
-                canSpanwBoss = true;
+                canSpawnBoss = true;
             }
             
             foreach (GameObject spawner in spawners)

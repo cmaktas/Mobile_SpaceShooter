@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class BossEnterState : BossBaseState
 {
-    private Vector2 enterPoint;
     [SerializeField] private float speed;
-
+    private Vector2 enterPoint;
+    
     protected override void Start()
     {
         base.Start();

@@ -3,11 +3,19 @@ using UnityEngine;
 
 public class BossAttackState : BossBaseState
 {
-    [SerializeField] private float attackMoveSpeed;
-    [SerializeField] private float shootRate;
+    [Header("Movement")]
+    [SerializeField] private float attackMoveSpeed = 3f;
+    [SerializeField] private float positionTolerance = 0.01f;
+
+    [Header("Firing")]
+    [SerializeField] private float shootRate = 0.5f;
     [SerializeField] private GameObject enemyBullet;
-    [Header("Shooting Points")]
     [SerializeField] private Transform[] shootingPoints;
+
+    [Header("Fire State Duration (sec)")]
+    [SerializeField] private Vector2 fireStateDurationRange = new(5f, 10f);
+
+    private readonly WaitForEndOfFrame _yieldEndOfFrame = new();
 
     public override void RunState()
     {
@@ -19,45 +27,64 @@ public class BossAttackState : BossBaseState
         base.StopState();
     }
 
-    IEnumerator RunFireState()
+    private IEnumerator RunFireState()
     {
         float shootTimer = 0f;
         float fireStateTimer = 0f;
-        float fireStateExitTime = Random.Range(5f, 10f);
-        Vector2 randomMovePosition = new Vector2(Random.Range(maxLeft, maxRight), Random.Range(maxDown, maxUp));
+        float fireStateExitTime = Random.Range(fireStateDurationRange.x, fireStateDurationRange.y);
+
+        Vector2 randomMovePosition = GetRandomMovePosition();
 
         while (fireStateTimer <= fireStateExitTime)
         {
-            if (Vector2.Distance(transform.position, randomMovePosition) > 0.01f)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, randomMovePosition, attackMoveSpeed * Time.deltaTime);
-            }
-            else
-            {
-                randomMovePosition = new Vector2(Random.Range(maxLeft, maxRight), Random.Range(maxDown, maxUp));
-            }
-            shootTimer += Time.deltaTime;
-            if (shootTimer >= shootRate)
-            {
-                for (int i = 0; i < shootingPoints.Length; i++)
-                {
-                    Instantiate(enemyBullet, shootingPoints[i].position, Quaternion.identity);
-                }
-                shootTimer = 0;
-            }
-            yield return new WaitForEndOfFrame();
+            randomMovePosition = HandleMovement(randomMovePosition);
+            shootTimer = HandleShooting(shootTimer);
+
             fireStateTimer += Time.deltaTime;
+            yield return _yieldEndOfFrame;
         }
-        bossController.ChangeState(BossState.Special);
-        /* int randomPick = Random.Range(0,2);
-        if (randomPick == 0)
+
+        HandleStateExit();
+    }
+
+    private Vector2 HandleMovement(Vector2 randomMovePosition)
+    {
+        if (Vector2.Distance(transform.position, randomMovePosition) > positionTolerance)
         {
-            bossController.ChangeState(BossState.Attack);
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                randomMovePosition,
+                attackMoveSpeed * Time.deltaTime
+            );
         }
         else
         {
-            bossController.ChangeState(BossState.Special);
-        } */
+            randomMovePosition = GetRandomMovePosition();
+        }
+        return randomMovePosition;
     }
 
+    private float HandleShooting(float shootTimer)
+    {
+        shootTimer += Time.deltaTime;
+        if (shootTimer >= shootRate)
+        {
+            for (int i = 0; i < shootingPoints.Length; i++)
+            {
+                Instantiate(enemyBullet, shootingPoints[i].position, Quaternion.identity);
+            }
+            shootTimer = 0f;
+        }
+        return shootTimer;
+    }
+
+    private void HandleStateExit()
+    {
+        bossController.ChangeState(BossState.Special);
+    }
+
+    private Vector2 GetRandomMovePosition()
+    {
+        return new Vector2(Random.Range(maxLeft, maxRight), Random.Range(maxDown, maxUp));
+    }
 }

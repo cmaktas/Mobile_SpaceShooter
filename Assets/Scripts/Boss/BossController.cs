@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
+    [Header("Boss States")]
     [SerializeField] private BossEnterState bossEnterState;
     [SerializeField] private BossAttackState bossAttack;
     [SerializeField] private BossSpecialState bossSpecialState;
     [SerializeField] private BossDeathState bossDeathState;
 
+    [Header("Testing")]
     [SerializeField] private bool test;
     [SerializeField] private BossState testState;
 
