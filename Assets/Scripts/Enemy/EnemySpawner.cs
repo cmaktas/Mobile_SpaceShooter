@@ -44,7 +44,6 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SetBoundaries()
     {
-        //yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(0.4f);
         projectionZ = Mathf.Abs(mainCamera.transform.position.z - transform.position.z);
         maxLeft = mainCamera.ViewportToWorldPoint(new Vector3(0.15f, 0f, projectionZ)).x;
@@ -55,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
 
     void OnDisable()
     {
-        if (bossPrefab != null && winCondition.canSpanwBoss)
+        if (bossPrefab != null && winCondition.canSpawnBoss)
         {
             Vector2 spawnPos = mainCamera.ViewportToWorldPoint(new Vector2(0.5f, 1.2f));
             Instantiate(bossPrefab, spawnPos, Quaternion.identity);

@@ -28,7 +28,6 @@ public class MeteorSpawner : MonoBehaviour
 
     private IEnumerator SetBoundaries()
     {
-        //yield return new WaitForEndOfFrame();
         yield return new WaitForSeconds(0.4f);
         projectionZ = Mathf.Abs(mainCamera.transform.position.z - transform.position.z);
         maxLeft = mainCamera.ViewportToWorldPoint(new Vector3(0.15f, 0f, projectionZ)).x;

@@ -3217,11 +3217,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1748299453823107255, guid: 5b833ec4e07324342a195aa4191a7840, type: 3}
       propertyPath: hasBoss
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748299453823107255, guid: 5b833ec4e07324342a195aa4191a7840, type: 3}
+      propertyPath: canSpanwBoss
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1748299453823107255, guid: 5b833ec4e07324342a195aa4191a7840, type: 3}
       propertyPath: possibleWinTime
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1748299453823107255, guid: 5b833ec4e07324342a195aa4191a7840, type: 3}
       propertyPath: 'spawners.Array.data[0]'
